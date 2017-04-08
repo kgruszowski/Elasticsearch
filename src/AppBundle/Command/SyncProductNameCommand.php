@@ -2,11 +2,12 @@
 
 namespace AppBundle\Command;
 
-use Symfony\Component\Console\Command\Command;
+use AppBundle\Utils\Iterator\XMLIterator;
+use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class SyncProductNameCommand extends Command
+class SyncProductNameCommand extends ContainerAwareCommand
 {
 
     public function configure()
@@ -18,6 +19,12 @@ class SyncProductNameCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        echo "test";
+        $appPath = $this->getContainer()->getParameter("kernel.root_dir");
+        $xmlPath = $appPath."/../src/AppBundle/Resources/xml/modanisa.xml";
+        $feedIterator = new XMLIterator($xmlPath, "urun");
+
+        foreach ($feedIterator as $row) {
+
+        }
     }
 }
