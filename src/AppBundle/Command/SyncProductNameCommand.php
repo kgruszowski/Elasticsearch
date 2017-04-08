@@ -22,17 +22,25 @@ class SyncProductNameCommand extends ContainerAwareCommand
     {
         $appPath = $this->getContainer()->getParameter("kernel.root_dir");
         $xmlPath = $appPath."/../src/AppBundle/Resources/xml/modanisa.xml";
+        $elasticsearchSynchronizer = $this->getContainer()->get("elasticsearch.synchronizer");
         $feedIterator = new XMLIterator($xmlPath, ModanisaParser::MAIN_NODE_NAME);
         $feedParser = $this->getContainer()->get("feed.parser");
         $feedParser->setParser(new ModanisaParser());
 
+        $output->writeln("Start synchronizing Modanisa");
         foreach ($feedIterator as $row) {
             $feedParser->addToData($row);
 
             if ($feedParser->readyToSync()) {
                 $data = $feedParser->getData();
-                dump($data);die;
+                $elasticsearchSynchronizer->sync($data);
             }
         }
+
+        if ($data = $feedParser->getData()) {
+            $elasticsearchSynchronizer->sync($data);
+        }
+
+        return 1;
     }
 }

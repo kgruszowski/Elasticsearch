@@ -1,3 +1,5 @@
 services:
     feed.parser:
         class: AppBundle\Service\FeedParser
+    elasticsearch.synchronizer:
+        class: AppBundle\Service\ElasticsearchSynchronizer
