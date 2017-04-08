@@ -15,3 +15,5 @@
 /vendor/
 /web/bundles/
 .idea
+/src/AppBundle/Resources/xml/*
+!/src/AppBundle/Resources/xml/.gitkeep
