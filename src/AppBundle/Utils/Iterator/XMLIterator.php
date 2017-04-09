@@ -2,6 +2,10 @@
 
 namespace AppBundle\Utils\Iterator;
 
+/**
+ * Class XMLIterator - iterator for efficient large xml file iterating
+ * @package AppBundle\Utils\Iterator
+ */
 class XMLIterator implements \Iterator
 {
     /** @var \XMLReader */
