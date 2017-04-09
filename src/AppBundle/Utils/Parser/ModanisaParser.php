@@ -8,6 +8,11 @@ class ModanisaParser implements ProductParser
 
     protected $row;
 
+    public function getMainNodeName()
+    {
+        return self::MAIN_NODE_NAME;
+    }
+
     public function setRow(\SimpleXMLElement $row)
     {
         $this->row = $row;
