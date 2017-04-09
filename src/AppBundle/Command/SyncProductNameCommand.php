@@ -34,9 +34,11 @@ class SyncProductNameCommand extends ContainerAwareCommand
         $feedParser = $this->getContainer()->get("feed.parser");
         $feedParser->setParser($parser);
 
-        $output->writeln("Start synchronizing Modanisa");
+        $output->writeln(sprintf("Start synchronizing %s", $parserName));
+        $i = 0;
         foreach ($feedIterator as $row) {
             $feedParser->addToData($row);
+            $i++;
 
             if ($feedParser->readyToSync()) {
                 $data = $feedParser->getData();
@@ -48,6 +50,7 @@ class SyncProductNameCommand extends ContainerAwareCommand
             $elasticsearchSynchronizer->sync($data);
         }
 
+        $output->writeln(sprintf("Synchornized %d products", $i));
         return 1;
     }
 
