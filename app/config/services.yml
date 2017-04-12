@@ -3,3 +3,5 @@ services:
         class: AppBundle\Service\FeedParser
     elasticsearch.synchronizer:
         class: AppBundle\Service\ElasticsearchSynchronizer
+    elasticsearch.engine:
+        class: AppBundle\Service\ElasticsearchEngine

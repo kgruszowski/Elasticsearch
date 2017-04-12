@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {{ form_start(form) }}
+    {{ form_end(form) }}
+    {% if results is not empty %}
+        <h1>Query {{ app.request.get('form').query }}</h1>
+        <h2>Found {{ results.hits.total }} in {{ results.took }} ms</h2>
+        {% for result in results.hits.hits %}
+            <p>{{ result._source.title }}</p>
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}
