@@ -17,11 +17,10 @@ class SearchController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $defaultData = array('query' => 'Type your query here');
-        $form = $this->createFormBuilder($defaultData)
+        $form = $this->createFormBuilder(null, ['csrf_protection' => false])
             ->setMethod("GET")
             ->add('query', TextType::class)
-            ->add('send', SubmitType::class)
+            ->add('search', SubmitType::class)
             ->getForm();
 
         $form->handleRequest($request);
