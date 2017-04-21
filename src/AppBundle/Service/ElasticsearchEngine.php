@@ -7,15 +7,16 @@ use Elasticsearch\ClientBuilder;
 class ElasticsearchEngine
 {
 
-    public function search(string $query)
+    public function search(string $query, Paginator $paginator)
     {
+
         $client = ClientBuilder::create()->build();
 
         $params = [
             'index' => 'products',
             'type' => 'product_name',
-            'size' => 20,
-            'from' => 0,
+            'size' => $paginator::ITEM_PER_PAGE,
+            'from' => $paginator->getStartIndex(),
             'body' => [
                 'query' => [
                     'match' => [

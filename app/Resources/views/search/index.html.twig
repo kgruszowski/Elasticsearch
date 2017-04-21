@@ -26,6 +26,14 @@
     <div class="container">
         <!-- Example row of columns -->
         {% if results is not empty %}
+            <div class="row text-center">
+                <ul class="pagination">
+                    {% for page, value in paginator %}
+                        <li><a href="{{ path('products_search', {page: page, form: app.request.query.get('form')}) }}">{{ value }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+
             {% for result in results.hits.hits %}
                 {% if loop.index == 1 %}
                     <div class="row">

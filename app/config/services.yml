@@ -5,3 +5,6 @@ services:
         class: AppBundle\Service\ElasticsearchSynchronizer
     elasticsearch.engine:
         class: AppBundle\Service\ElasticsearchEngine
+    paginator:
+        class: AppBundle\Service\Paginator
+        arguments: ['@router']

@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller;
 
-use Elasticsearch\ClientBuilder;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -13,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 class SearchController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/products", name="products_search")
      */
     public function indexAction(Request $request)
     {
@@ -30,7 +29,18 @@ class SearchController extends Controller
             $data = $form->getData();
             $query = $data['query'];
 
-            $results = $this->get('elasticsearch.engine')->search($query);
+            $page = $request->query->get('page');
+
+            $paginator = $this->get('paginator');
+            $paginator->setPage($page);
+
+            $results = $this->get('elasticsearch.engine')->search($query, $paginator);
+
+            return $this->render('search/index.html.twig', [
+                'form' => $form->createView(),
+                'results' => $results,
+                'paginator' => $paginator->paginate($results['hits']['total'])
+            ]);
         }
 
         return $this->render('search/index.html.twig', [
