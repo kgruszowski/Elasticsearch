@@ -27,4 +27,21 @@ class TrendyolParser implements ProductParser
         return null;
     }
 
+    public function getImage()
+    {
+        if ($this->row) {
+            return (string)$this->row->thumb_image_link;
+        }
+
+        return null;
+    }
+
+    public function getPrice()
+    {
+        if ($this->row) {
+            return (string)$this->row->SalePrice;
+        }
+
+        return null;
+    }
 }

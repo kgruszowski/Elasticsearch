@@ -27,4 +27,21 @@ class ModanisaParser implements ProductParser
         return null;
     }
 
+    public function getImage()
+    {
+        if ($this->row) {
+            return (string)$this->row->resimurl;
+        }
+
+        return null;
+    }
+
+    public function getPrice()
+    {
+        if ($this->row) {
+            return (string)$this->row->fiyat;
+        }
+
+        return null;
+    }
 }

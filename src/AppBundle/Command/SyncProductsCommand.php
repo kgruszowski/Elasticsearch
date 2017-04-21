@@ -9,13 +9,13 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class SyncProductNameCommand extends ContainerAwareCommand
+class SyncProductsCommand extends ContainerAwareCommand
 {
 
     public function configure()
     {
         $this
-            ->setName('elastic:sync:titles')
+            ->setName('elastic:sync:products')
             ->setDescription('Command synchronizing product names with elasticsearch index')
             ->addOption('filename', 'f', InputOption::VALUE_REQUIRED, 'Name of parsed file')
             ->addOption('parserName', 'p', InputOption::VALUE_REQUIRED, 'Name of parser to use');

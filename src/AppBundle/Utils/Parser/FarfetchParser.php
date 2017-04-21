@@ -27,4 +27,21 @@ class FarfetchParser implements ProductParser
         return null;
     }
 
+    public function getImage()
+    {
+        if ($this->row) {
+            return (string)$this->row->mediumImage;
+        }
+
+        return null;
+    }
+
+    public function getPrice()
+    {
+        if ($this->row) {
+            return (string)$this->row->price;
+        }
+
+        return null;
+    }
 }

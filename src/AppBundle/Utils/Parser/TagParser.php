@@ -27,4 +27,21 @@ class TagParser implements ProductParser
         return null;
     }
 
+    public function getImage()
+    {
+        if ($this->row) {
+            return (string)$this->row->picture_thumbnail_url;
+        }
+
+        return null;
+    }
+
+    public function getPrice()
+    {
+        if ($this->row) {
+            return (string)$this->row->price;
+        }
+
+        return null;
+    }
 }
