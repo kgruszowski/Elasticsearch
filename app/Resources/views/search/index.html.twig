@@ -26,13 +26,24 @@
     <div class="container">
         <!-- Example row of columns -->
         {% if results is not empty %}
-            <div class="row">
             {% for result in results.hits.hits %}
-                <div class="col-md-3">
-                    <h3>{{ result._source.title }}</h3>
-                </div>
+                {% if loop.index == 1 %}
+                    <div class="row">
+                {% endif %}
+                    <div class="col-md-3 text-center">
+                        <h3>{{ result._source.title }}</h3>
+                        {% if result._source.price is defined %}
+                            <h4>{{ result._source.price }}$</h4>
+                        {% endif %}
+                        {% if result._source.price is defined %}
+                            <img src="{{ result._source.img }}" alt="{{ result._source.title }}" />
+                        {% endif %}
+                    </div>
+                    {% if loop.index % 4 == 0 %}
+                        </div>
+                        <div class="row">
+                    {% endif %}
             {% endfor %}
-            </div>
         {% endif %}
     </div> <!-- /container -->
 {% endblock %}

@@ -26,7 +26,9 @@ class ElasticsearchSynchronizer
             ];
 
             $params['body'][] = [
-                'title' => $data[$i]
+                'title' => $data[$i]['title'],
+                'img' => $data[$i]['img'],
+                'price' => $data[$i]['price']
             ];
         }
 

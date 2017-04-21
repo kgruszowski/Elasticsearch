@@ -20,7 +20,11 @@ class FeedParser
     public function addToData(\SimpleXMLElement $row)
     {
         $this->parser->setRow($row);
-        $this->data[] = $this->parser->getTitle();
+        $this->data[] = [
+            "title" => $this->parser->getTitle(),
+            "img" => $this->parser->getImage(),
+            "price" => $this->parser->getPrice()
+        ];
     }
 
     public function getData() : array
