@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 class SearchController extends Controller
 {
     /**
-     * @Route("/products", name="products_search")
+     * @Route("/", name="products_search")
      */
     public function indexAction(Request $request)
     {
