@@ -10,7 +10,7 @@ class ElasticsearchSynchronizer
 
     public function __construct(array $hosts)
     {
-        $this->client = ClientBuilder::create()->setHosts($this->hosts)->build();
+        $this->client = ClientBuilder::create()->setHosts($hosts)->build();
     }
 
     public function sync(array $data): array
