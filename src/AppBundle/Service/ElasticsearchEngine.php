@@ -6,18 +6,15 @@ use Elasticsearch\ClientBuilder;
 
 class ElasticsearchEngine
 {
-    protected $hosts;
+    protected $client;
 
     public function __construct(array $hosts)
     {
-        $this->host = $hosts;
+        $this->client = ClientBuilder::create()->setHosts($hosts)->build();
     }
 
     public function search(string $query, Paginator $paginator)
     {
-
-        $client = ClientBuilder::create()->setHosts($this->hosts)->build();
-
         $params = [
             'index' => 'products',
             'type' => 'product_name',
@@ -32,7 +29,7 @@ class ElasticsearchEngine
             ]
         ];
 
-        return $client->search($params);
+        return $this->client->search($params);
     }
 
 }
