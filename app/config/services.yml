@@ -3,8 +3,10 @@ services:
         class: AppBundle\Service\FeedParser
     elasticsearch.synchronizer:
         class: AppBundle\Service\ElasticsearchSynchronizer
+        arguments: ['%es_hosts%']
     elasticsearch.engine:
         class: AppBundle\Service\ElasticsearchEngine
+        arguments: ['%es_hosts%']
     paginator:
         class: AppBundle\Service\Paginator
         arguments: ['@router']
